@@ -1,21 +1,20 @@
+const { getTasks, createTask, updateTask, deleteTask } = require("../controllers/taskControllers");
 
-const { getTasks, createTasks, updateTasks, deleteTasks } = require("../controllers/taskController");
-
-const taskRoutes=(req,res)=>{
-    if(req.method=='GET'){
+const taskRoutes = (req, res) => {
+    if (req.method === 'GET') {
         getTasks(req, res);
-    }else if(req.method=='POST') {
-        createTasks(req, res);
-    }else if(req.method=='PATCH') {
-        updateTasks(req, res);
-    }else if(req.method=='DELETE') {
-        deleteTasks(req, res);
-    }else{
-        res.writeHead(404,'Not Found', {'content-type': 'application/json'})
-            res.end(JSON.stringify({
-                message:'Page Not Found'
-            }))
-      
-      }  
-}
-module.exports=taskRoutes;
+    } else if (req.method === 'POST') {
+        createTask(req, res);
+    } else if (req.method === 'PATCH') {
+        updateTask(req, res);
+    } else if (req.method === 'DELETE') {
+        deleteTask(req, res);w
+    } else {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+            message: 'PAGE not found'
+        }));
+    }
+};
+
+module.exports = taskRoutes;
