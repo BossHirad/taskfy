@@ -1,19 +1,22 @@
-const http=require('http');
-const taskRoutes = require('./routes/taskRoutes');
-const PORT=9000;
-const HOSTNAME='localhist';
-const server=http.createServer((req,res)=>{
-    if (req.url.startsWith('/tasks')){
-        taskRoutes(req,res)
-    }else{
-        res.writeHead(404,'Not Found', {'content-type': 'application/json'})
-            res.end(JSON.stringify({
-                message:'Page Not Found'
-            }))
-      
-      }  
-        
-    
+const { log } = require('console');
+const http = require('http');
+const PORT = 3000;
+const HOSTNAME = 'localhost';
 
+
+const server = http.createServer((req, res) => {
+    if (req.url.startsWith('/tasks')) {
+    
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Tasks endpoint hit' }));
+    } else {
+       
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'PAGE NOT FOUND' }));
+    }
 });
 
+
+server.listen(PORT, HOSTNAME, () => {
+    console.log(`Server running at http://${HOSTNAME}:${PORT}`);
+});
